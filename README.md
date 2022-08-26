@@ -5,3 +5,5 @@ This tool will easily pack all clothing you have, and will output single folder,
 ## Plan
 
 - Make tool read from `input/` folder and check for `.ytd` and `.ydd`
+- Generate `.ymt` file, idk how yet, but I need to figure it out
+- Using GTAUtil create .rpf with those files
