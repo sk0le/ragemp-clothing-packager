@@ -1,4 +1,4 @@
-# RageMP Clothing Pack
+# RageMP Clothing Packger
 
 This tool will easily pack all clothing you have, and will output single folder, that you can drop in `/client_packages/game_resources/dlcpacks` and it will work.
 
