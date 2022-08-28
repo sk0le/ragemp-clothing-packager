@@ -6,9 +6,8 @@ import { buildRpf } from "./rpf/buildRpf";
 import buildXmlFiles from "./xml/buildXmlFiles";
 import { buildYmtFiles } from "./xml/buildYmtFiles";
 import checkAndGetFiles from "./files";
-import { cleanUp } from "./utils/cleanup";
 import { copyFiles } from "./files/copyFiles";
-import { joaat } from "./utils/joaat";
+import { createDefaultWorkingFolder } from "./files/createDefaultWorkingFolder";
 import printAscii from "./utils/prints/printAscii";
 import prompts from "prompts";
 
@@ -16,6 +15,8 @@ import prompts from "prompts";
 printAscii("Clothing Packager");
 
 const main = async () => {
+  await createDefaultWorkingFolder();
+
   const a = await prompts({
     type: "confirm",
     name: "value",
@@ -53,10 +54,6 @@ const main = async () => {
   const fileExtensionValid: boolean = await checkAndGetFiles();
 
   if (fileExtensionValid) {
-    const cleaned: boolean = await cleanUp();
-
-    if (!cleaned) return;
-
     const xmlFilesBuilt = buildXmlFiles();
     if (xmlFilesBuilt) {
       const ymtFilesBuilt = await buildYmtFiles();
