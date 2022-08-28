@@ -10,5 +10,5 @@ export const printError = (text: string) => {
 };
 
 export const printInfo = (text: string) => {
-  console.log(kleur.bold(kleur.blue("[!]")), text);
+  console.log(kleur.bold(kleur.magenta("[!]")), text);
 };

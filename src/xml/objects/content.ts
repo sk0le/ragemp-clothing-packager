@@ -33,13 +33,6 @@ export const getContentXml = (name: string) => {
       <disabled value="true" />
       <persistent value="true" />
     </Item>
-    <Item>
-      <filename>dlc_${name}CRC:/common/data/pedalternatevariations.meta</filename>
-      <fileType>ALTERNATE_VARIATIONS_FILE</fileType>
-      <overlay value="false" />
-      <disabled value="true" />
-      <persistent value="false" />
-    </Item>
   </dataFiles>
   <contentChangeSets>
     <Item>

@@ -1,7 +1,6 @@
 import { printInfo, printSuccess } from "../utils/prints/prints";
 
 import { DlcName } from "../state";
-import { PowerShell } from "node-powershell";
 import fs from "fs/promises";
 import { generateYmt } from "./ymt/male_ymt";
 import { getComponents } from "../files/getComponent";
@@ -22,11 +21,9 @@ export const buildYmtFiles = async () => {
 
     printInfo("Wrote XML files, generating YMT");
 
-    const makeYmt = await spawn("powershell.exe", [
-      `.\\MakeYMT.ps1 ${DlcName}`,
-    ]);
+    await spawn("powershell.exe", [`.\\scripts\\MakeYMT.ps1 ${DlcName}`]);
 
-    const dir = `${process.cwd}\\working-folder\\x64\\models\\cdimages`;
+    const dir = `${process.cwd()}\\working-folder\\x64\\models\\cdimages`;
 
     await fs.rm(
       `${dir}\\${DlcName}_male.rpf\\mp_m_freemode_01_mp_m_${DlcName}.ymt.xml`

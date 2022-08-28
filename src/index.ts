@@ -1,9 +1,13 @@
+import * as fsExtra from "fs-extra";
+
 import { updateDlcName, updateOrder } from "./state";
 
+import { buildRpf } from "./rpf/buildRpf";
 import buildXmlFiles from "./xml/buildXmlFiles";
 import { buildYmtFiles } from "./xml/buildYmtFiles";
 import checkAndGetFiles from "./files";
 import { cleanUp } from "./utils/cleanup";
+import { copyFiles } from "./files/copyFiles";
 import { joaat } from "./utils/joaat";
 import printAscii from "./utils/prints/printAscii";
 import prompts from "prompts";
@@ -12,6 +16,18 @@ import prompts from "prompts";
 printAscii("Clothing Packager");
 
 const main = async () => {
+  const a = await prompts({
+    type: "confirm",
+    name: "value",
+    message:
+      "Do you want to delete all other dlcs in output folder (this is in case of overlaping)?",
+    initial: true,
+  });
+
+  if (a.value) {
+    fsExtra.emptyDir(`${process.cwd()}\\output\\`);
+  }
+
   const response = await prompts({
     type: "text",
     name: "name",
@@ -37,13 +53,17 @@ const main = async () => {
   const fileExtensionValid: boolean = await checkAndGetFiles();
 
   if (fileExtensionValid) {
+    const cleaned: boolean = await cleanUp();
+
+    if (!cleaned) return;
+
     const xmlFilesBuilt = buildXmlFiles();
     if (xmlFilesBuilt) {
       const ymtFilesBuilt = await buildYmtFiles();
       if (ymtFilesBuilt) {
+        copyFiles();
+        buildRpf();
       }
-
-      cleanUp();
     }
   }
 };

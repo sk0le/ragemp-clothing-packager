@@ -72,7 +72,7 @@ export const getYmtMale = (a: string, b: string, c: string, d: string) => {
     <hash_E8A00D49 />
     <hash_09AD30FA />
   </hash_8590ADD8>
-  <dlcName>hash_${joaat(DlcName)}</dlcName>
+  <dlcName>hash_${joaat(`mp_m_${DlcName}`)}</dlcName>
 </hash_16760659>`;
 };
 
