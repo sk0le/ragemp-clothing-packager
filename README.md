@@ -16,10 +16,14 @@ yarn
 
 # build all of the files
 yarn build
-
-# start the script
-yarn start
 ```
+
+## Workflow
+
+- Create `male/` and `female/` folder in `input/`
+- Put files that belongs to `mp_m_freemode_01` to `male` and `mp_f_freemode_01` to `female`
+- After that, open `PowerShell` in root folder, than run `yarn start`
+- Just follow the script and you will get new folder in `output/`
 
 ## Plan
 
